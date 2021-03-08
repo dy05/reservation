@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
@@ -42,6 +43,20 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
+    public function getProfilePhotoUrlAttribute()
+    {
+        if ($this->profile_photo_path) {
+            $file = Storage::disk($this->profilePhotoDisk());
+
+            if ($file->exists($this->profile_photo_path)) {
+                return $file->url($this->profile_photo_path);
+            }
+        }
+
+        return $this->defaultProfilePhotoUrl();
+    }
+
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -60,4 +75,9 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+
+    protected function defaultProfilePhotoUrl()
+    {
+        return asset('img/default_avatar.jpg');
+    }
 }

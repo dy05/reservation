@@ -2,7 +2,7 @@
 
 Use the following commands to run app on http://localhost:8000
 
-`cp .env.example .env`
+`php -r "file_exists('.env') || copy('.env.example', '.env');"`
 
 `composer install`
 

@@ -26,7 +26,9 @@
                     <jet-section-border />
                 </div>
 
-                <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
+                <template v-if="hasSessionsBrowserFeature">
+                    <logout-other-browser-sessions-form :sessions="sessions" class="mt-10 sm:mt-0" />
+                </template>
 
                 <template v-if="$page.props.jetstream.hasAccountDeletionFeatures">
                     <jet-section-border />
@@ -48,7 +50,10 @@
     import UpdateProfileInformationForm from './UpdateProfileInformationForm'
 
     export default {
-        props: ['sessions'],
+        props: {
+          sessions: {type: Array, default: []},
+          hasSessionsBrowserFeature: {type: Boolean, default: false},
+        },
 
         components: {
             AppLayout,
