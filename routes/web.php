@@ -27,7 +27,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::get('/users', function () {
         return Inertia::render('Users/Show', [
-            'users' => \App\Models\User::all()
+            'users' => \App\Models\User::all()->where('id', '!=', \Illuminate\Support\Facades\Auth::user()->id)->all()
         ]);
     })->name('users.index');
 
