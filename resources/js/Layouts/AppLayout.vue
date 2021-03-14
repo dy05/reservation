@@ -20,6 +20,9 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
+                                <jet-nav-link v-if="$page.props.user.is_admin" :href="route('users.index')" :active="route().current('users.index')">
+                                    Liste des utilisateurs
+                                </jet-nav-link>
                                 <jet-nav-link :href="route('reservation')" :active="route().current('reservation')">
                                     Reserver
                                 </jet-nav-link>

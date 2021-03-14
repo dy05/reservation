@@ -1,9 +1,9 @@
 <template>
-  <app-layout>
+  <dash-board-layout>
 
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Profile
+        Reservation
       </h2>
     </template>
 
@@ -880,15 +880,15 @@
         </main>
       </div>
     </div>
-  </app-layout>
+  </dash-board-layout>
 </template>
 
 <script>
-import AppLayout from '@/Layouts/AppLayout'
+import DashBoardLayout from '@/Pages/DashBoardLayout'
 
 export default {
   components: {
-    AppLayout,
+    DashBoardLayout,
   }
 }
 </script>
