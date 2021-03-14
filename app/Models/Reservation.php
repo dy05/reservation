@@ -19,9 +19,7 @@ class Reservation extends Model
     ];
 
     protected $casts = [
-        'day' => 'date',
-        'startHour' => 'time',
-        'endHour' => 'time',
+        'day' => 'date'
     ];
 
     public function user()
